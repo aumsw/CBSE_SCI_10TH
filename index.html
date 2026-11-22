@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CBSE Class 10 Science Mock Test</title>
+<style>
+:root{--n9:#061a33;--n8:#0b2545;--c5:#06b6d4;--c3:#67e8f9;--bg:#f1f9fc;--mut:#5a7291;--ok:#16a34a;--bad:#dc2626;--mk:#7c3aed}
+*{box-sizing:border-box}
+body{margin:0;font-family:system-ui,Segoe UI,Roboto,sans-serif;background:var(--bg);color:var(--n8);user-select:none;-webkit-user-select:none}
+input{user-select:text;-webkit-user-select:text}
+.hidden{display:none!important}
+.center{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px}
+.card{background:#fff;border-radius:16px;box-shadow:0 8px 30px rgba(6,26,51,.15);padding:28px;max-width:640px;width:100%}
+h1{margin:0 0 4px;font-size:24px}h2{margin:0 0 10px;font-size:19px}h4{margin:14px 0 6px;font-size:13px;color:var(--mut)}
+ul{padding-left:18px;line-height:1.65;font-size:14px;color:#33496a}
+.btn{border:0;border-radius:10px;padding:11px 18px;font-weight:700;font-size:14px;cursor:pointer;background:var(--c5);color:var(--n9)}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+.btn.sec{background:#e2eef5;color:var(--n8)}.btn.red{background:var(--bad);color:#fff}
+.fld{position:relative;margin:10px 0}
+.fld label{display:block;font-size:12px;font-weight:700;color:var(--mut);margin-bottom:4px}
+.fld input{width:100%;padding:11px 12px;border:2px solid #d6e8f0;border-radius:10px;font-size:15px;color:var(--n8);outline:0;background:#fff}
+.fld input:focus{border-color:var(--c5)}
+.sgb{position:absolute;left:0;right:0;top:100%;background:#fff;border:1px solid #cfe3ec;border-radius:10px;box-shadow:0 8px 24px rgba(6,26,51,.18);z-index:20;max-height:230px;overflow:auto;margin-top:2px}
+.sg{padding:9px 12px;cursor:pointer;font-size:14px}.sg:hover,.sg.on{background:#e0f7fb}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.err{color:var(--bad);font-size:13px;min-height:18px;margin:6px 0}
+.hint{font-size:11px;color:var(--mut);margin-top:3px}
+header{background:var(--n8);color:#fff;display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;padding:10px 18px}
+header small{color:#9fb6d3}
+.timer{font:700 22px ui-monospace,Consolas,monospace;color:var(--c3)}.timer.low{color:#fca5a5}
+.tabs{display:flex;gap:8px;padding:10px 18px;background:#fff;border-bottom:1px solid #d6e8f0}
+.tab{border:1px solid #cfe3ec;background:#fff;border-radius:20px;padding:6px 16px;font-weight:600;cursor:pointer;color:var(--n8)}
+.tab.on{background:var(--c5);border-color:var(--c5);color:var(--n9)}
+.main{display:grid;grid-template-columns:1fr 310px;gap:16px;padding:16px 18px}
+.q{background:#fff;border-radius:14px;padding:20px;box-shadow:0 2px 10px rgba(6,26,51,.08)}
+.qh{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;font-size:13px;color:var(--mut);font-weight:600;margin-bottom:10px}
+#qtext{font-size:17px;line-height:1.6;margin:0 0 14px}
+#qtext .fig{margin:10px 0;color:var(--n8)}
+.opt{display:block;width:100%;text-align:left;background:#f6fbfd;border:2px solid #d6e8f0;border-radius:10px;padding:11px 14px;margin-bottom:9px;font-size:16px;cursor:pointer;color:var(--n8)}
+.opt b{display:inline-block;width:26px;color:var(--c5)}.opt.sel{border-color:var(--c5);background:#e0f7fb}
+.numbox{max-width:300px}
+#num{width:100%;font-size:22px;padding:10px 12px;border:2px solid var(--c5);border-radius:10px;text-align:right;font-family:ui-monospace,Consolas,monospace;color:var(--n8)}
+.kp{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:8px}
+.kp button{padding:11px 0;font-size:17px;font-weight:700;border:1px solid #cbd9e2;background:#eef3f6;border-radius:8px;cursor:pointer;color:var(--n8)}
+.nav{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+aside{background:#fff;border-radius:14px;padding:14px;box-shadow:0 2px 10px rgba(6,26,51,.08);align-self:start;max-height:calc(100vh - 130px);overflow:auto}
+.grid{display:grid;grid-template-columns:repeat(5,1fr);gap:7px}
+.pb{border:1px solid #cbd9e2;background:#eef3f6;border-radius:8px;height:36px;font-weight:700;cursor:pointer;color:var(--n8);display:inline-block;min-width:36px;text-align:center;line-height:34px}
+.pb.a{background:var(--ok);color:#fff;border-color:var(--ok)}.pb.v{background:var(--bad);color:#fff;border-color:var(--bad)}
+.pb.m{background:var(--mk);color:#fff;border-color:var(--mk)}.pb.cur{outline:3px solid var(--c5)}
+.leg{font-size:12px;color:var(--mut);margin-top:14px;line-height:2.1}.leg .pb{height:22px;min-width:22px;line-height:20px;font-size:11px;cursor:default}
+.ov{position:fixed;inset:0;background:rgba(6,26,51,.9);z-index:99;display:flex;align-items:center;justify-content:center;padding:20px}
+.box{background:#fff;border-radius:16px;padding:28px;max-width:440px;width:100%;text-align:center}
+.big{font-size:68px;font-weight:800;color:var(--bad);line-height:1.1;margin:6px 0 14px}
+table{width:100%;border-collapse:collapse;font-size:14px;margin:12px 0}th,td{padding:8px;border-bottom:1px solid #e1edf3;text-align:center}th:first-child,td:first-child{text-align:left}
+.mt td,.mt th{border:1px solid #cfe3ec;padding:5px 10px;text-align:left}
+.score{font-size:44px;font-weight:800;color:var(--c5)}
+details{margin-top:12px;font-size:14px}.rv{padding:8px 0;border-bottom:1px solid #e1edf3;line-height:1.5}
+.g{color:var(--ok);font-weight:700}.r{color:var(--bad);font-weight:700}
+.stat{padding:10px 12px;border-radius:10px;font-size:13px;font-weight:600;margin:10px 0}
+.stat.ok{background:#dcfce7;color:#166534}.stat.bad{background:#fee2e2;color:#991b1b}.stat.wait{background:#e0f2fe;color:#075985}
+@media(max-width:820px){.main{grid-template-columns:1fr}.row2{grid-template-columns:1fr}}
+html{-webkit-text-size-adjust:100%}body{-webkit-tap-highlight-color:transparent;touch-action:manipulation;overflow-x:hidden}
+.tabs{overflow-x:auto}.tab{flex:0 0 auto;white-space:nowrap}
+@media(max-width:820px){
+header{position:sticky;top:0;z-index:30;padding:8px 12px;gap:6px 10px}
+header>div:first-child{flex:1 1 100%;order:0}header small{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:92vw}
+header .btn{padding:8px 12px;font-size:13px}.timer{font-size:19px}#viol{font-size:13px}
+.tabs{padding:8px 12px;gap:6px}.tab{padding:6px 12px;font-size:13px}
+.main{padding:10px;gap:10px}.q{padding:14px}.qh{font-size:12px}
+#qtext{font-size:15.5px}.opt{font-size:15px;padding:12px;margin-bottom:8px}.opt b{width:22px}
+.nav{display:grid;grid-template-columns:1fr 1fr;gap:8px}.nav .btn{width:100%;padding:12px 6px;font-size:13px}#next{grid-column:1/-1;font-size:15px}
+.numbox{max-width:100%}#num{font-size:20px}.kp button{padding:14px 0}
+aside{max-height:none;padding:12px}.grid{grid-template-columns:repeat(8,1fr)}.pb{min-width:0;height:38px;line-height:36px}
+.center{padding:12px;align-items:flex-start}.card{padding:18px;border-radius:14px}h1{font-size:21px}
+.fld input{font-size:16px}ul{font-size:13.5px}
+.ov{padding:12px}.box{padding:20px}.big{font-size:56px}.btn{min-height:42px}
+table{font-size:12.5px}th,td{padding:6px 3px}.score{font-size:38px}
+}
+@media(max-width:420px){.grid{grid-template-columns:repeat(6,1fr)}#qtext{font-size:15px}}
+#repWrap{position:absolute;left:-12000px;top:0;width:740px}
+@media print{body>*:not(#repWrap){display:none!important}#repWrap{position:static!important;width:auto!important}}
+</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body>
+
+<!-- ===== Start screen: student details ===== -->
+<div id="start" class="center"><div class="card">
+  <h1>CBSE Class 10 Science Mock Test</h1>
+  <p style="margin:0 0 8px;color:var(--mut)">Physics • Chemistry • Biology</p>
+  <div class="fld"><label>STUDENT NAME</label><input id="fName" placeholder="Enter your full name" maxlength="60" autocomplete="off"></div>
+  <div class="row2">
+    <div class="fld"><label>STATE</label><input id="fState" placeholder="Type to search and select" autocomplete="off"><div class="sgb hidden" id="sState"></div></div>
+    <div class="fld"><label>CITY</label><input id="fCity" placeholder="Select a state first" autocomplete="off"><div class="sgb hidden" id="sCity"></div></div>
+  </div>
+  <div class="fld"><label>SCHOOL NAME</label><input id="fSchool" placeholder="Type your school name" autocomplete="off"><div class="sgb hidden" id="sSchool"></div>
+    <div class="hint">If your school is not in the list, type its full name — it will appear as a suggestion next time.</div></div>
+  <div class="err" id="fErr"></div>
+  <ul id="rules"></ul>
+  <button class="btn" id="go" style="width:100%;margin-top:10px;font-size:16px">START EXAM</button>
+</div></div>
+
+<!-- ===== Exam ===== -->
+<div id="exam" class="hidden">
+  <header>
+    <div><b>CBSE Class 10 Science Mock Test</b><br><small id="who"></small></div>
+    <span id="viol">Warnings: 0/2</span>
+    <span class="timer" id="timer">00:00:00</span>
+    <button class="btn red" id="subBtn">Submit Paper</button>
+  </header>
+  <div class="tabs" id="tabs"></div>
+  <div class="main">
+    <section class="q">
+      <div class="qh"><span id="qno"></span><span id="qsub"></span></div>
+      <div id="qtext"></div>
+      <div id="opts"></div>
+      <div class="nav">
+        <button class="btn sec" id="prev">Previous</button>
+        <button class="btn sec" id="mark">Mark for Review &amp; Next</button>
+        <button class="btn sec" id="clr">Clear Answer</button>
+        <button class="btn" id="next">Save &amp; Next</button>
+      </div>
+    </section>
+    <aside id="pal"></aside>
+  </div>
+</div>
+
+<div id="result" class="center hidden"></div>
+<div id="repWrap"><div id="rep"></div></div>
+
+<div id="alert" class="ov hidden"><div class="box">
+  <h2 id="aT"></h2><p id="aM" style="color:var(--mut)"></p>
+  <div class="big" id="aC"></div>
+  <button class="btn" id="aB" style="width:100%">RETURN TO EXAM (FULL SCREEN)</button>
+</div></div>
+
+<div id="conf" class="ov hidden"><div class="box">
+  <h2>Submit the paper?</h2><p id="cM" style="color:var(--mut)"></p>
+  <button class="btn sec" id="cN">Cancel</button> <button class="btn red" id="cY">Yes, Submit</button>
+</div></div>
+
+<script>
+// ===================== SETTINGS =====================
+const CFG = {
+  examName: 'CBSE Class 10 Science — Mock Test',
+  minutes: 120,
+  maxWarn: 2,     // allowed warnings (each time the student leaves the exam screen). The 3rd exit = instant submit
+  grace: 10,      // seconds allowed to return after leaving the screen
+  final: 5,       // extra final-countdown seconds, then auto-submit
+  plus: 1, minus: 0,
+  numMinus: 0,    // Numerical galat jawab pe minus marks (0 kar do agar negative nahi chahiye)
+  sheetURL: 'https://script.google.com/macros/s/AKfycbzytD5-l8QSj8w7cMp6Aw5lIieCZ9vl22pr3IiTFGrqBpmMtYmB8dEjoHod4-CMdbY7/exec'   // <-- Code.gs deploy karke yahan paste karein
+};
+const SUB = { P: 'Physics', C: 'Chemistry', B: 'Biology' };
+
+// ===================== QUESTIONS (75) =====================
+//==QDATA START
+const Q = [];
+const m = (s, q, o, a) => Q.push({ s, t: 'm', q, o, a, f: '' });
+m("P","The SI unit of electric potential difference is",["volt", "ampere", "ohm", "coulomb"],0);
+m("P","A wire has resistance R. Its length is doubled and its area of cross-section is halved. The new resistance is",["R", "2R", "4R", "R/4"],2);
+m("P","Three 6 Ω resistors are connected in parallel. The equivalent resistance is",["18 Ω", "2 Ω", "6 Ω", "0.5 Ω"],1);
+m("P","Heat produced in a resistor is given by",["H = I²Rt", "H = IR²t", "H = I²R/t", "H = IRt²"],0);
+m("P","A 1000 W heater is used for 2 hours. The energy consumed is",["1 kWh", "2 kWh", "0.5 kWh", "2000 kWh"],1);
+m("P","A current of 2 A flows through a 5 Ω resistor. The potential difference across it is",["2.5 V", "7 V", "10 V", "0.4 V"],2);
+m("P","An ammeter is connected in ........ with the circuit element",["series", "parallel", "either series or parallel", "none of these"],0);
+m("P","The resistivity of a material depends on",["its length", "its area of cross-section", "its nature and temperature", "its shape"],2);
+m("P","Assertion (A): Tungsten is used for making filaments of electric bulbs. Reason (R): Tungsten has a very high melting point.",["Both A and R are true and R is the correct explanation of A", "Both A and R are true but R is not the correct explanation of A", "A is true but R is false", "A is false but R is true"],0);
+m("P","The direction of the magnetic field around a straight current-carrying wire is given by",["Fleming's left-hand rule", "Right-hand thumb rule", "Ohm's law", "Lenz's law"],1);
+m("P","Outside a bar magnet, the magnetic field lines go from",["south pole to north pole", "north pole to south pole", "east to west", "centre to the poles"],1);
+m("P","An electric motor converts",["mechanical energy into electrical energy", "electrical energy into mechanical energy", "chemical energy into electrical energy", "heat energy into electrical energy"],1);
+m("P","The device that converts mechanical energy into electrical energy is",["motor", "generator", "galvanometer", "ammeter"],1);
+m("P","Fleming's left-hand rule gives the direction of",["induced current", "magnetic field", "force on a current-carrying conductor", "resistance"],2);
+m("P","The frequency of AC supplied in India is",["25 Hz", "50 Hz", "60 Hz", "100 Hz"],1);
+m("P","Electromagnetic induction is the phenomenon of",["producing a magnetic field by current", "producing an induced current by a changing magnetic field", "heating a wire by current", "stopping current by a magnet"],1);
+m("P","Assertion (A): Two magnetic field lines never intersect each other. Reason (R): At any point the net magnetic field has only one direction.",["Both A and R are true and R is the correct explanation of A", "Both A and R are true but R is not the correct explanation of A", "A is true but R is false", "A is false but R is true"],0);
+m("P","The focal length of a plane mirror is",["zero", "infinity", "1 m", "equal to its radius"],1);
+m("P","When an object is placed at the focus of a concave mirror, the image is formed",["at infinity, highly enlarged", "at the centre of curvature", "behind the mirror", "between F and C"],0);
+m("P","The mirror formula is",["1/v + 1/u = 1/f", "1/v − 1/u = 1/f", "v + u = f", "uv = f"],0);
+m("P","A convex lens has a focal length of 20 cm. Its power is",["+5 D", "+0.5 D", "−5 D", "+20 D"],0);
+m("P","The refractive index of glass is 1.5 and the speed of light in air is 3×10⁸ m/s. The speed of light in glass is",["2×10⁸ m/s", "4.5×10⁸ m/s", "1.5×10⁸ m/s", "3×10⁸ m/s"],0);
+m("P","A ray parallel to the principal axis of a convex lens, after refraction, passes through",["optical centre", "principal focus", "centre of curvature", "no fixed point"],1);
+m("P","The mirror generally used as a rear-view mirror in vehicles is",["concave", "convex", "plane", "cylindrical"],1);
+m("P","A real, inverted image of the same size as the object is formed by a convex lens when the object is placed at",["F", "2F", "beyond 2F", "between F and optical centre"],1);
+m("P","Assertion (A): A concave mirror is used by dentists. Reason (R): A concave mirror forms an enlarged, erect image when the object is within its focal length.",["Both A and R are true and R is the correct explanation of A", "Both A and R are true but R is not the correct explanation of A", "A is true but R is false", "A is false but R is true"],0);
+m("P","The far point of a normal human eye is at",["25 cm", "1 m", "infinity", "2.5 m"],2);
+m("P","Myopia (short-sightedness) is corrected by using a",["convex lens", "concave lens", "cylindrical lens", "plane mirror"],1);
+m("P","The least distance of distinct vision for a normal eye is",["25 cm", "50 cm", "10 cm", "infinity"],0);
+m("P","The blue colour of the sky is due to",["dispersion of light", "scattering of light", "reflection of light", "absorption of light"],1);
+m("P","The splitting of white light into its seven colours by a prism is called",["reflection", "scattering", "dispersion", "diffraction"],2);
+m("P","Twinkling of stars is due to",["atmospheric refraction of starlight", "reflection of starlight", "dispersion of starlight", "scattering by clouds"],0);
+m("P","The part of the eye that controls the size of the pupil is the",["cornea", "iris", "retina", "ciliary body"],1);
+m("C","Fe + CuSO₄ → FeSO₄ + Cu is an example of a",["combination reaction", "decomposition reaction", "displacement reaction", "double displacement reaction"],2);
+m("C","In the equation 2H₂ + O₂ → ?H₂O, the number of water molecules formed is",["1", "2", "3", "4"],1);
+m("C","Rancidity of fats and oils can be prevented by",["adding antioxidants", "keeping in open air", "heating repeatedly", "adding water"],0);
+m("C","On heating lead nitrate, brown fumes are evolved. The gas is",["NO₂", "N₂O", "NO", "N₂"],0);
+m("C","Which of the following is an endothermic process?",["Respiration", "Burning of natural gas", "Decomposition of calcium carbonate", "Neutralisation of acid and base"],2);
+m("C","Quicklime reacts with water to form slaked lime. This reaction is",["endothermic combination", "exothermic combination", "decomposition", "displacement"],1);
+m("C","Silver chloride turns grey in sunlight because",["it decomposes into silver and chlorine", "it is oxidised", "it combines with oxygen", "it dissolves"],0);
+m("C","Assertion (A): Corrosion of iron is an oxidation process. Reason (R): Iron reacts with oxygen and moisture to form hydrated iron(III) oxide (rust).",["Both A and R are true and R is the correct explanation of A", "Both A and R are true but R is not the correct explanation of A", "A is true but R is false", "A is false but R is true"],0);
+m("C","The pH of a neutral solution at 25 °C is",["0", "7", "14", "1"],1);
+m("C","The chemical formula of baking soda is",["Na₂CO₃", "NaHCO₃", "CaCO₃", "NaOH"],1);
+m("C","The acid present in vinegar is",["acetic acid", "citric acid", "lactic acid", "tartaric acid"],0);
+m("C","The chemical formula of Plaster of Paris is",["CaSO₄·2H₂O", "CaSO₄·½H₂O", "CaSO₄", "CaCO₃"],1);
+m("C","Bleaching powder is produced by passing chlorine gas over",["dry slaked lime", "quicklime", "limestone", "washing soda"],0);
+m("C","Washing soda is",["Na₂CO₃·10H₂O", "NaHCO₃", "NaCl", "Na₂CO₃·H₂O"],0);
+m("C","A solution turns red litmus paper blue. Its pH is most likely",["1", "5", "7", "10"],3);
+m("C","The gas evolved when a metal carbonate reacts with dilute HCl is",["H₂", "CO₂", "O₂", "Cl₂"],1);
+m("C","Assertion (A): Dry HCl gas does not change the colour of dry blue litmus paper. Reason (R): HCl gives H⁺ ions only in the presence of water.",["Both A and R are true and R is the correct explanation of A", "Both A and R are true but R is not the correct explanation of A", "A is true but R is false", "A is false but R is true"],0);
+m("C","Which metal is liquid at room temperature?",["Sodium", "Mercury", "Iron", "Aluminium"],1);
+m("C","The most reactive metal among the following is",["Cu", "Zn", "Mg", "Fe"],2);
+m("C","Aqua regia is a mixture of",["conc. HCl and conc. HNO₃ in the ratio 3 : 1", "conc. HNO₃ and conc. HCl in the ratio 3 : 1", "H₂SO₄ and HCl in 3 : 1", "HCl and HNO₃ in 1 : 1"],0);
+m("C","Ionic compounds have high melting points because",["of strong electrostatic forces between ions", "of weak forces between molecules", "they contain covalent bonds", "they are soft"],0);
+m("C","Iron articles are protected from rusting by coating with zinc. This process is called",["galvanisation", "electroplating", "anodising", "alloying"],0);
+m("C","Which of the following non-metals is lustrous?",["Sulphur", "Iodine", "Phosphorus", "Carbon (coal)"],1);
+m("C","Rusting of iron needs",["air only", "water only", "both air and water", "neither air nor water"],2);
+m("C","Assertion (A): Sodium is stored under kerosene oil. Reason (R): Sodium is highly reactive and reacts vigorously with air and water.",["Both A and R are true and R is the correct explanation of A", "Both A and R are true but R is not the correct explanation of A", "A is true but R is false", "A is false but R is true"],0);
+m("C","The functional group present in alcohols is",["−CHO", "−OH", "−COOH", ">C=O"],1);
+m("C","The number of covalent bonds in ethane (C₂H₆) is",["6", "7", "8", "5"],1);
+m("C","The next homologue of ethanol (C₂H₅OH) is",["CH₃OH", "C₃H₇OH", "C₂H₄", "C₂H₅COOH"],1);
+m("C","Ethanoic acid reacts with ethanol in the presence of conc. H₂SO₄ to form",["soap", "an ester", "an ether", "an alkane"],1);
+m("C","Saponification of oils or fats with sodium hydroxide produces",["soap and glycerol", "ester and water", "alcohol and acid", "alkane and carbon dioxide"],0);
+m("C","The general formula of alkenes is",["CₙH₂ₙ₊₂", "CₙH₂ₙ", "CₙH₂ₙ₋₂", "CₙHₙ"],1);
+m("C","Soaps are not effective in hard water because they",["form insoluble scum with calcium and magnesium ions", "form too much foam", "are acidic", "are not soluble in water"],0);
+m("C","Assertion (A): Diamond and graphite are allotropes of carbon. Reason (R): Both are made of carbon atoms arranged in different ways.",["Both A and R are true and R is the correct explanation of A", "Both A and R are true but R is not the correct explanation of A", "A is true but R is false", "A is false but R is true"],0);
+m("B","The enzyme in saliva that breaks down starch is",["pepsin", "amylase", "trypsin", "lipase"],1);
+m("B","Photosynthesis takes place in the",["mitochondria", "chloroplasts", "nucleus", "ribosomes"],1);
+m("B","Opening and closing of stomata is controlled by",["guard cells", "xylem", "epidermis", "phloem"],0);
+m("B","In humans, exchange of gases takes place in the",["trachea", "bronchi", "alveoli", "larynx"],2);
+m("B","The human heart has how many chambers?",["2", "3", "4", "5"],2);
+m("B","Xylem tissue transports",["food", "water and minerals", "hormones", "oxygen only"],1);
+m("B","In yeast, anaerobic respiration produces",["lactic acid and energy", "ethanol and carbon dioxide", "carbon dioxide and water", "only energy"],1);
+m("B","The blood vessels that carry blood away from the heart are",["veins", "arteries", "capillaries", "lymph vessels"],1);
+m("B","The structural and functional unit of the kidney is the",["neuron", "nephron", "alveolus", "villus"],1);
+m("B","Assertion (A): Veins have valves. Reason (R): Valves prevent the backward flow of blood.",["Both A and R are true and R is the correct explanation of A", "Both A and R are true but R is not the correct explanation of A", "A is true but R is false", "A is false but R is true"],0);
+m("B","The hormone secreted by the pancreas that regulates blood sugar is",["thyroxine", "insulin", "adrenaline", "auxin"],1);
+m("B","The plant hormone that promotes cell elongation is",["auxin", "abscisic acid", "ethylene", "cytokinin"],0);
+m("B","The gap between two neurons is called",["axon", "synapse", "dendrite", "myelin sheath"],1);
+m("B","Iodine is necessary for the synthesis of",["thyroxine", "insulin", "adrenaline", "growth hormone"],0);
+m("B","The part of the brain that controls posture and balance is the",["cerebrum", "cerebellum", "medulla", "hypothalamus"],1);
+m("B","Growth of a shoot towards light is called",["geotropism", "phototropism", "hydrotropism", "chemotropism"],1);
+m("B","Assertion (A): Reflex actions are very fast. Reason (R): The reflex arc passes through the spinal cord without waiting for the brain to process the signal.",["Both A and R are true and R is the correct explanation of A", "Both A and R are true but R is not the correct explanation of A", "A is true but R is false", "A is false but R is true"],0);
+m("B","Binary fission is seen in",["Amoeba", "Hydra", "Planaria", "Spirogyra"],0);
+m("B","Pollen grains are produced in the",["stigma", "anther", "ovary", "style"],1);
+m("B","Fertilisation in human females normally occurs in the",["uterus", "oviduct (fallopian tube)", "ovary", "vagina"],1);
+m("B","Bryophyllum reproduces vegetatively through its",["leaves", "roots", "seeds", "flowers"],0);
+m("B","Which of the following methods also protects against sexually transmitted infections?",["Copper-T", "Oral pills", "Condom", "Vasectomy"],2);
+m("B","The number of chromosomes in a human gamete is",["46", "23", "44", "22"],1);
+m("B","Assertion (A): Budding in Hydra is a type of asexual reproduction. Reason (R): A single parent produces offspring without gametes.",["Both A and R are true and R is the correct explanation of A", "Both A and R are true but R is not the correct explanation of A", "A is true but R is false", "A is false but R is true"],0);
+m("B","The scientist who worked on pea plants to explain heredity is",["Gregor Mendel", "Charles Darwin", "Lamarck", "Hugo de Vries"],0);
+m("B","The phenotypic ratio in the F₂ generation of a monohybrid cross is",["3 : 1", "1 : 2 : 1", "9 : 3 : 3 : 1", "1 : 1"],0);
+m("B","The sex of a human child is determined by",["the mother's X chromosome", "the father's chromosome (X or Y)", "both parents equally", "the environment"],1);
+m("B","The wings of a bird and the forelimbs of a bat are examples of",["homologous organs", "analogous organs", "vestigial organs", "rudimentary organs"],0);
+m("B","Genes are located on",["chromosomes", "ribosomes", "cytoplasm", "cell wall"],0);
+m("B","Assertion (A): Variations are important for the survival of a species. Reason (R): They help a species adapt to changes in its environment.",["Both A and R are true and R is the correct explanation of A", "Both A and R are true but R is not the correct explanation of A", "A is true but R is false", "A is false but R is true"],0);
+m("B","According to the 10% law, the energy passed to the next trophic level is about",["1%", "10%", "50%", "90%"],1);
+m("B","Depletion of the ozone layer is mainly caused by",["CFCs", "CO₂", "N₂", "O₂"],0);
+m("B","Which of the following is biodegradable?",["Plastic", "Paper", "DDT", "Glass"],1);
+m("B","Producers in an ecosystem are",["herbivores", "green plants", "decomposers", "carnivores"],1);
+//==QDATA END
+Q.forEach((q, i) => q.id = i);   // original question number (used for solutions, topics and sheet columns)
+
+// ===================== SCHOOL DATA (State -> Cities) =====================
+const STATES = {
+ 'Andhra Pradesh':'Visakhapatnam,Vijayawada,Guntur,Nellore,Tirupati,Kurnool,Rajahmundry,Kakinada,Anantapur,Kadapa,Eluru,Ongole',
+ 'Arunachal Pradesh':'Itanagar,Naharlagun,Pasighat,Tawang,Ziro,Bomdila',
+ 'Assam':'Guwahati,Silchar,Dibrugarh,Jorhat,Nagaon,Tinsukia,Tezpur,Bongaigaon',
+ 'Bihar':'Patna,Gaya,Bhagalpur,Muzaffarpur,Darbhanga,Purnia,Arrah,Begusarai,Munger,Samastipur',
+ 'Chhattisgarh':'Raipur,Bhilai,Bilaspur,Korba,Durg,Rajnandgaon,Raigarh,Jagdalpur',
+ 'Goa':'Panaji,Margao,Vasco da Gama,Mapusa,Ponda',
+ 'Gujarat':'Ahmedabad,Surat,Vadodara,Rajkot,Bhavnagar,Jamnagar,Junagadh,Gandhinagar,Anand,Nadiad,Morbi,Mehsana,Bhuj,Porbandar,Surendranagar,Amreli,Navsari,Valsad,Vapi,Bharuch,Godhra,Palanpur,Patan,Gondal,Jetpur,Dwarka,Ishwariya,Kalavad,Dhoraji,Botad,Veraval,Himmatnagar,Ankleshwar,Dahod,Modasa',
+ 'Haryana':'Gurugram,Faridabad,Panipat,Ambala,Rohtak,Hisar,Karnal,Sonipat,Yamunanagar,Bhiwani,Kurukshetra,Sirsa',
+ 'Himachal Pradesh':'Shimla,Dharamshala,Solan,Mandi,Kullu,Bilaspur,Hamirpur,Una,Kangra',
+ 'Jharkhand':'Ranchi,Jamshedpur,Dhanbad,Bokaro,Hazaribagh,Deoghar,Giridih',
+ 'Karnataka':'Bengaluru,Mysuru,Hubballi,Mangaluru,Belagavi,Kalaburagi,Davanagere,Ballari,Shivamogga,Tumakuru,Udupi,Dharwad,Vijayapura',
+ 'Kerala':'Thiruvananthapuram,Kochi,Kozhikode,Thrissur,Kollam,Kannur,Alappuzha,Palakkad,Kottayam,Malappuram',
+ 'Madhya Pradesh':'Bhopal,Indore,Gwalior,Jabalpur,Ujjain,Sagar,Rewa,Satna,Dewas,Ratlam,Chhindwara,Khandwa',
+ 'Maharashtra':'Mumbai,Pune,Nagpur,Nashik,Thane,Chhatrapati Sambhajinagar,Solapur,Kolhapur,Amravati,Nanded,Latur,Sangli,Jalgaon,Akola,Navi Mumbai,Pimpri-Chinchwad',
+ 'Manipur':'Imphal,Thoubal,Churachandpur,Bishnupur',
+ 'Meghalaya':'Shillong,Tura,Jowai',
+ 'Mizoram':'Aizawl,Lunglei,Champhai',
+ 'Nagaland':'Kohima,Dimapur,Mokokchung',
+ 'Odisha':'Bhubaneswar,Cuttack,Rourkela,Berhampur,Sambalpur,Puri,Balasore,Bhadrak',
+ 'Punjab':'Ludhiana,Amritsar,Jalandhar,Patiala,Bathinda,Mohali,Hoshiarpur,Pathankot,Moga',
+ 'Rajasthan':'Jaipur,Jodhpur,Kota,Udaipur,Ajmer,Bikaner,Alwar,Sikar,Bhilwara,Sri Ganganagar,Pali,Jhunjhunu',
+ 'Sikkim':'Gangtok,Namchi,Gyalshing',
+ 'Tamil Nadu':'Chennai,Coimbatore,Madurai,Tiruchirappalli,Salem,Tirunelveli,Erode,Vellore,Thoothukudi,Namakkal,Tiruppur,Thanjavur',
+ 'Telangana':'Hyderabad,Secunderabad,Warangal,Nizamabad,Karimnagar,Khammam,Nalgonda,Mahbubnagar',
+ 'Tripura':'Agartala,Udaipur,Dharmanagar',
+ 'Uttar Pradesh':'Lucknow,Kanpur,Varanasi,Prayagraj,Agra,Meerut,Ghaziabad,Noida,Gorakhpur,Bareilly,Aligarh,Moradabad,Mathura,Jhansi,Saharanpur,Firozabad',
+ 'Uttarakhand':'Dehradun,Haridwar,Roorkee,Haldwani,Rudrapur,Nainital,Rishikesh',
+ 'West Bengal':'Kolkata,Howrah,Durgapur,Asansol,Siliguri,Bardhaman,Kharagpur,Malda',
+ 'Andaman and Nicobar Islands':'Port Blair',
+ 'Chandigarh':'Chandigarh',
+ 'Dadra and Nagar Haveli and Daman and Diu':'Daman,Silvassa,Diu',
+ 'Delhi':'New Delhi,Delhi,Dwarka,Rohini,Pitampura,Laxmi Nagar,Vasant Kunj',
+ 'Jammu and Kashmir':'Srinagar,Jammu,Anantnag,Baramulla,Udhampur',
+ 'Ladakh':'Leh,Kargil',
+ 'Lakshadweep':'Kavaratti',
+ 'Puducherry':'Puducherry,Karaikal,Yanam,Mahe'
+};
+const GENERIC_SCHOOLS = ['Kendriya Vidyalaya','Jawahar Navodaya Vidyalaya','Delhi Public School','DAV Public School','Sarvodaya Vidyalaya','Government Higher Secondary School','St. Xavier\'s High School','Modi School','Navrachana School','Podar International School'];
+let SERVER_SCHOOLS = [];   // Sheet se aayi hui schools list [{state,city,school}]
+
+// ===================== HELPERS =====================
+const $ = id => document.getElementById(id);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+const ST = { name: '', state: '', city: '', school: '' };
+let ans = Q.map(q => q.t === 'm' ? -1 : ''), seen = Q.map(() => false), mk = Q.map(() => false);
+let cur = 0, run = false, endAt = 0, startAt = 0, viol = 0, vN = 0, ac, beepT, tickT, lastPayload = null;
+const isAns = i => Q[i].t === 'm' ? ans[i] >= 0 : String(ans[i]).trim() !== '';
+
+$('rules').innerHTML =
+  '<li><b>' + Q.length + ' MCQs</b> • ' + CFG.plus * Q.length + ' marks • ' + CFG.minutes + ' minutes • Physics (' + Q.filter(q => q.s === 'P').length + '), Chemistry (' + Q.filter(q => q.s === 'C').length + '), Biology (' + Q.filter(q => q.s === 'B').length + ')</li>' +
+  '<li>Each question carries <b>' + CFG.plus + ' mark</b>. There is <b>no negative marking</b>.</li>' +
+  '<li>Clicking <b>Start Exam</b> starts the timer and switches the screen to <b>full screen</b>.</li>' +
+  '<li>Leaving the exam screen (exiting full screen, switching tab or window) sounds an <b>alarm</b> and counts as a <b>warning</b>.</li>' +
+  '<li>You have <b>' + CFG.maxWarn + ' warnings</b>. After each exit you must return within ' + CFG.grace + ' seconds (then a ' + CFG.final + '-second final countdown starts, after which the paper is auto-submitted).</li>' +
+  '<li style="color:#b91c1c"><b>The 3rd time you leave the exam screen, your paper is submitted immediately.</b></li>' +
+  '<li>After submission you can download a <b>personal PDF report</b>: your performance analysis plus step-by-step solutions of the questions you got wrong or skipped. Your report is private to you.</li>';
+
+// ===================== Smart suggest =====================
+function suggest(inp, box, getList, onPick) {
+  let idx = -1, items = [];
+  const show = () => {
+    const v = inp.value.trim().toLowerCase();
+    items = getList().filter(x => !v || x.toLowerCase().includes(v))
+      .sort((a, b) => (a.toLowerCase().startsWith(v) ? 0 : 1) - (b.toLowerCase().startsWith(v) ? 0 : 1)).slice(0, 8);
+    idx = -1;
+    box.innerHTML = items.map((x, i) => '<div class="sg" data-i="' + i + '">' + esc(x) + '</div>').join('');
+    box.classList.toggle('hidden', !items.length);
+  };
+  const pick = v => { inp.value = v; box.classList.add('hidden'); if (onPick) onPick(v); };
+  inp.addEventListener('input', show);
+  inp.addEventListener('focus', show);
+  inp.addEventListener('keydown', e => {
+    if (box.classList.contains('hidden')) return;
+    const els = box.children;
+    if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+      e.preventDefault(); idx = (idx + (e.key === 'ArrowDown' ? 1 : -1) + items.length) % items.length;
+      [...els].forEach((el, i) => el.classList.toggle('on', i === idx));
+    } else if (e.key === 'Enter' && idx >= 0) { e.preventDefault(); pick(items[idx]); }
+    else if (e.key === 'Escape') box.classList.add('hidden');
+  });
+  box.addEventListener('mousedown', e => { const d = e.target.closest('.sg'); if (d) { e.preventDefault(); pick(items[+d.dataset.i]); } });
+  inp.addEventListener('blur', () => setTimeout(() => box.classList.add('hidden'), 150));
+}
+const stateNames = Object.keys(STATES);
+const norm = s => s.trim().toLowerCase();
+const stateKey = () => stateNames.find(s => norm(s) === norm($('fState').value)) || '';
+suggest($('fState'), $('sState'), () => stateNames, () => { $('fCity').value = ''; $('fSchool').value = ''; $('fCity').placeholder = 'Type your city'; $('fCity').focus(); });
+suggest($('fCity'), $('sCity'), () => { const k = stateKey(); return k ? STATES[k].split(',') : []; }, () => { $('fSchool').value = ''; $('fSchool').focus(); });
+suggest($('fSchool'), $('sSchool'), () => {
+  const k = stateKey(), c = norm($('fCity').value);
+  const fromSheet = SERVER_SCHOOLS.filter(r => norm(r.state) === norm(k) && (!c || norm(r.city) === c)).map(r => r.school);
+  return [...new Set([...fromSheet, ...GENERIC_SCHOOLS.map(g => $('fCity').value.trim() ? g + ', ' + $('fCity').value.trim() : g)])];
+});
+
+function loadSchools() {
+  if (!CFG.sheetURL || CFG.sheetURL.includes('PASTE')) return;
+  fetch(CFG.sheetURL + '?action=schools').then(r => r.json()).then(j => { if (Array.isArray(j.schools)) SERVER_SCHOOLS = j.schools; }).catch(() => {});
+}
+loadSchools();
+
+// ===================== Paper UI =====================
+function go(i) { cur = i; seen[i] = true; render(); }
+
+function renderPal() {
+  let h = '';
+  for (const k in SUB) {
+    h += '<h4>' + SUB[k] + '</h4>';
+    [['m', 'MCQs'], ['n', 'Section B (Numerical)']].forEach(([t, lab]) => {
+      if (!Q.some(x => x.s === k && x.t === t)) return;
+      h += '<div style="font-size:11px;color:var(--mut);margin:6px 0 4px">' + lab + '</div><div class="grid">';
+      Q.forEach((x, i) => {
+        if (x.s !== k || x.t !== t) return;
+        const c = mk[i] ? 'm' : isAns(i) ? 'a' : seen[i] ? 'v' : '';
+        h += '<button class="pb ' + c + (i === cur ? ' cur' : '') + '" data-i="' + i + '">' + (i + 1) + '</button>';
+      });
+      h += '</div>';
+    });
+  }
+  h += '<div class="leg"><span class="pb a">✓</span> Answered <span class="pb v">•</span> Not answered<br><span class="pb m">★</span> Marked <span class="pb">–</span> Not visited</div>';
+  $('pal').innerHTML = h;
+}
+
+function render() {
+  const q = Q[cur];
+  $('qno').textContent = 'Question ' + (cur + 1) + ' of ' + Q.length;
+  $('qsub').textContent = SUB[q.s] + ' • MCQ • ' + CFG.plus + ' mark • No negative marking';
+  $('qtext').innerHTML = q.q + q.f;
+  if (q.t === 'm') {
+    $('opts').innerHTML = q.o.map((t, i) =>
+      '<button class="opt' + (ans[cur] === i ? ' sel' : '') + '" data-i="' + i + '"><b>' + 'ABCD'[i] + '</b>' + t + '</button>').join('');
+  } else {
+    $('opts').innerHTML = '<div class="numbox"><input id="num" inputmode="decimal" autocomplete="off" placeholder="Answer"' + (matchMedia('(pointer:coarse)').matches ? ' readonly' : '') + ' value="' + esc(ans[cur]) + '">' +
+      '<div class="kp">' + ['7', '8', '9', '4', '5', '6', '1', '2', '3', '0', '.', '−'].map(k => '<button data-k="' + (k === '−' ? '-' : k) + '">' + k + '</button>').join('') +
+      '<button data-k="back">⌫</button><button data-k="clear" style="grid-column:span 2">Clear</button></div></div>';
+    $('num').oninput = e => { e.target.value = e.target.value.replace(/[^0-9.\-]/g, ''); ans[cur] = e.target.value; renderPal(); };
+  }
+  $('tabs').innerHTML = Object.keys(SUB).map(k =>
+    '<button class="tab' + (k === q.s ? ' on' : '') + '" data-s="' + k + '">' + SUB[k] + '</button>').join('');
+  renderPal();
+}
+
+$('opts').onclick = e => {
+  const b = e.target.closest('.opt');
+  if (b) { ans[cur] = +b.dataset.i; render(); return; }
+  const k = e.target.closest('.kp button');
+  if (k) {
+    const v = k.dataset.k, n = $('num');
+    if (v === 'back') n.value = n.value.slice(0, -1);
+    else if (v === 'clear') n.value = '';
+    else if (v === '-') n.value = n.value.startsWith('-') ? n.value.slice(1) : '-' + n.value;
+    else n.value += v;
+    ans[cur] = n.value; renderPal();
+  }
+};
+$('pal').onclick = e => { const b = e.target.closest('.pb[data-i]'); if (b) go(+b.dataset.i); };
+$('tabs').onclick = e => { const b = e.target.closest('.tab'); if (b) go(Q.findIndex(x => x.s === b.dataset.s)); };
+$('next').onclick = () => { mk[cur] = false; go(Math.min(cur + 1, Q.length - 1)); };
+$('prev').onclick = () => go(Math.max(cur - 1, 0));
+$('mark').onclick = () => { mk[cur] = true; go(Math.min(cur + 1, Q.length - 1)); };
+$('clr').onclick = () => { ans[cur] = Q[cur].t === 'm' ? -1 : ''; mk[cur] = false; render(); };
+
+$('subBtn').onclick = () => {
+  const done = Q.filter((_, i) => isAns(i)).length;
+  $('cM').textContent = 'You have answered ' + done + ' of ' + Q.length + ' questions. This cannot be undone.';
+  $('conf').classList.remove('hidden');
+};
+$('cN').onclick = () => $('conf').classList.add('hidden');
+$('cY').onclick = () => submit('You submitted the paper.', 'Manual submit');
+
+// ===================== Start =====================
+$('go').onclick = () => {
+  const name = $('fName').value.trim().replace(/\s+/g, ' '), st = stateKey(), city = $('fCity').value.trim(), sch = $('fSchool').value.trim();
+  const err = !name || name.length < 3 ? 'Please enter your full name.' : !st ? 'Please select your State from the list.' : city.length < 2 ? 'Please enter or select your City.' : sch.length < 3 ? 'Please enter or select your School name.' : '';
+  $('fErr').textContent = err;
+  if (err) return;
+  Object.assign(ST, { name, state: st, city, school: sch });
+  const el = document.documentElement;
+  (el.requestFullscreen ? el.requestFullscreen() : Promise.reject()).then(begin).catch(() =>
+    alert('Full screen could not be started. Please open this page in Chrome (Android or computer), allow full screen, and try again.'));
+};
+
+// Random paper for every student: questions are shuffled inside each subject/section and MCQ options are shuffled too
+function shuffleExam() {
+  const sh = a => { for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
+  const groups = {};
+  Q.forEach((q, i) => (groups[q.s + q.t] = groups[q.s + q.t] || []).push(i));
+  Object.values(groups).forEach(pos => {
+    const items = sh(pos.map(i => Q[i]));
+    pos.forEach((p, k) => Q[p] = items[k]);
+  });
+  Q.forEach(q => {
+    if (q.t !== 'm' || /^Both A and R/.test(q.o[0]) || q.o.some(o => /none of these|all of the above/i.test(o))) return;
+    const perm = sh(q.o.map((_, i) => i));          // perm[newIndex] = original index
+    q.o = perm.map(i => q.o[i]); q.a = perm.indexOf(q.a); q.perm = perm;
+  });
+}
+
+function begin() {
+  shuffleExam();
+  ac = new (window.AudioContext || window.webkitAudioContext)();
+  ac.resume();
+  $('start').classList.add('hidden');
+  $('exam').classList.remove('hidden');
+  $('who').textContent = ST.name + ' • ' + ST.school + ', ' + ST.city;
+  run = true;
+  startAt = Date.now();
+  endAt = startAt + CFG.minutes * 60000;
+  go(0);
+  tickT = setInterval(tick, 250);
+  tick();
+}
+
+// ===================== Alarm =====================
+function beep() {
+  if (!ac) return;
+  const o = ac.createOscillator(), g = ac.createGain();
+  o.type = 'square'; o.frequency.value = 880; g.gain.value = 0.25;
+  o.connect(g); g.connect(ac.destination);
+  o.start(); o.stop(ac.currentTime + 0.3);
+}
+function startBeep() { beep(); beepT = setInterval(beep, 600); }
+function stopBeep() { clearInterval(beepT); }
+
+// ===================== Leaving-screen detection =====================
+function chk() {
+  if (!run) return;
+  const ok = !!document.fullscreenElement && !document.hidden && document.hasFocus();
+  if (!ok && !viol) {
+    viol = Date.now(); vN++;
+    if (vN > CFG.maxWarn) {   // 3rd exit -> instant submit
+      $('viol').textContent = 'Warnings: ' + CFG.maxWarn + '/' + CFG.maxWarn;
+      submit('You have crossed the limit of ' + CFG.maxWarn + ' warnings, so your paper has been submitted automatically.', 'Auto-submit (crossed ' + CFG.maxWarn + '-warning limit)');
+      return;
+    }
+    $('viol').textContent = 'Warnings: ' + vN + '/' + CFG.maxWarn;
+    $('alert').classList.remove('hidden');
+    startBeep(); tick();
+  } else if (ok && viol) {
+    viol = 0;
+    $('alert').classList.add('hidden');
+    stopBeep();
+  }
+}
+['fullscreenchange', 'visibilitychange'].forEach(e => document.addEventListener(e, chk));
+['blur', 'focus'].forEach(e => addEventListener(e, chk));
+$('aB').onclick = () => {
+  const p = document.documentElement.requestFullscreen();
+  if (p && p.then) p.then(chk).catch(chk); else chk();
+};
+
+// ===================== Timer + warning countdown (real time) =====================
+function tick() {
+  const now = Date.now(), left = Math.max(0, endAt - now), s = Math.ceil(left / 1000);
+  $('timer').textContent = [s / 3600 | 0, (s % 3600) / 60 | 0, s % 60].map(x => String(x).padStart(2, '0')).join(':');
+  $('timer').classList.toggle('low', s < 300);
+  if (left <= 0) { submit('Time is up. Your paper was submitted automatically.', 'Time up'); return; }
+  if (viol) {
+    const e = (now - viol) / 1000;
+    if (e >= CFG.grace + CFG.final) { submit('You stayed away from the exam screen, so your paper was auto-submitted.', 'Auto-submit (left screen)'); return; }
+    if (e >= CFG.grace) {
+      $('aT').textContent = '⚠ FINAL COUNTDOWN — Paper will be submitted!';
+      $('aM').textContent = 'You did not return to the exam screen. Auto-submit in';
+      $('aC').textContent = Math.ceil(CFG.grace + CFG.final - e);
+    } else {
+      $('aT').textContent = '⚠ WARNING ' + vN + ' of ' + CFG.maxWarn + ' — You left the exam screen!';
+      $('aM').textContent = (vN >= CFG.maxWarn ? 'This was your LAST warning. If you leave the exam screen once more, your paper will be submitted immediately. ' : '') + 'Return to the exam screen within';
+      $('aC').textContent = Math.ceil(CFG.grace - e);
+    }
+  }
+}
+
+// ===================== Submit + result =====================
+function submit(msg, reason) {
+  if (!run) return;
+  run = false; clearInterval(tickT); stopBeep();
+  ['alert', 'conf'].forEach(i => $(i).classList.add('hidden'));
+  if (document.fullscreenElement) document.exitFullscreen();
+  const T = {}; let tot = 0, C = 0, W = 0, U = 0;
+  for (const k in SUB) T[k] = { c: 0, w: 0, u: 0, m: 0 };
+  Q.forEach((q, i) => {
+    const t = T[q.s];
+    if (!isAns(i)) { t.u++; U++; return; }
+    const ok = q.t === 'm' ? ans[i] === q.a : Math.abs(parseFloat(ans[i]) - q.a) < 1e-6;
+    if (ok) { t.c++; t.m += CFG.plus; C++; }
+    else { t.w++; t.m -= (q.t === 'm' ? CFG.minus : CFG.numMinus); W++; }
+  });
+  const STAT = Q.map((q, i) => !isAns(i) ? 'u' : (q.t === 'm' ? ans[i] === q.a : Math.abs(parseFloat(ans[i]) - q.a) < 1e-6) ? 'c' : 'w');
+  let rows = '';
+  for (const k in SUB) { tot += T[k].m; rows += '<tr><td>' + SUB[k] + '</td><td>' + T[k].c + '</td><td>' + T[k].w + '</td><td>' + T[k].u + '</td><td><b>' + T[k].m + '</b></td></tr>'; }
+  const rv = Q.map((q, i) => {
+    const given = q.t === 'm' ? 'ABCD'[ans[i]] : ans[i];
+    const ok = isAns(i) && (q.t === 'm' ? ans[i] === q.a : Math.abs(parseFloat(ans[i]) - q.a) < 1e-6);
+    const yours = !isAns(i) ? '<span style="color:var(--mut)">Not attempted</span>' : ok ? '<span class="g">' + esc(given) + ' ✓</span>' : '<span class="r">' + esc(given) + ' ✗</span>';
+    const corr = q.t === 'm' ? 'ABCD'[q.a] + '. ' + q.o[q.a] : q.a;
+    return '<div class="rv"><b>Q' + (i + 1) + '.</b> ' + q.q.replace(/<br>.*/s, '…') + '<br>Your answer: ' + yours + ' &nbsp;|&nbsp; Correct: <b>' + corr + '</b></div>';
+  }).join('');
+
+  lastPayload = {
+    id: 'S' + Date.now().toString(36) + Math.random().toString(36).slice(2, 7),
+    exam: CFG.examName, name: ST.name, state: ST.state, city: ST.city, school: ST.school,
+    total: tot, max: Q.length * CFG.plus,
+    subj: T, correct: C, wrong: W, unattempted: U,
+    warnings: vN, minutes: Math.round((Date.now() - startAt) / 6000) / 10, reason: reason,
+    answers: (() => { const o = []; Q.forEach((q, i) => { o[q.id] = q.t === 'm' ? (ans[i] >= 0 ? 'ABCD'[q.perm ? q.perm[ans[i]] : ans[i]] : '') : String(ans[i]).trim(); }); return o; })()
+  };
+  try { localStorage.setItem('cbse10_sci_last_result', JSON.stringify(lastPayload)); } catch (e) {}
+
+  try { $('rep').innerHTML = buildReport(STAT, T, tot, C, W, U); } catch (e) { console.error(e); }
+  $('exam').classList.add('hidden');
+  $('result').classList.remove('hidden');
+  $('result').innerHTML = '<div class="card"><h1>Test Submitted</h1><p style="color:var(--mut)">' + esc(msg) + '</p>' +
+    '<p style="margin:4px 0"><b>' + esc(ST.name) + '</b><br><span style="color:var(--mut);font-size:13px">' + esc(ST.school) + ', ' + esc(ST.city) + ', ' + esc(ST.state) + '</span></p>' +
+    '<div class="score">' + tot + ' <span style="font-size:20px;color:var(--mut)">/ ' + Q.length * CFG.plus + '</span></div>' +
+    '<table><tr><th>Subject</th><th>Correct</th><th>Wrong</th><th>Skipped</th><th>Marks</th></tr>' + rows + '</table>' +
+    '<p style="font-size:13px;color:var(--mut)">Warnings (times you left the screen): ' + Math.min(vN, CFG.maxWarn) + ' of ' + CFG.maxWarn + (vN > CFG.maxWarn ? ' — limit crossed' : '') + '</p>' +
+    '<div id="saveStat" class="stat wait">Saving your result…</div>' +
+    '<button class="btn sec hidden" id="retry">Retry saving</button>' +
+    '<div class="stat wait" id="pdfStat">Preparing your personal PDF report…</div>' +
+    '<button class="btn" id="pdfBtn" style="width:100%;margin-bottom:8px">⬇ Download My Report (PDF)</button>' +
+    '<button class="btn sec hidden" id="prtBtn" style="width:100%">Print / Save as PDF instead</button>' +
+    '<details><summary style="cursor:pointer;font-weight:700">Review answers</summary>' + rv + '</details></div>';
+  $('retry').onclick = saveResult;
+  $('pdfBtn').onclick = makePDF; $('prtBtn').onclick = () => window.print();
+  saveResult();
+  setTimeout(makePDF, 900);
+}
+
+async function post(body, noCors) {
+  const opt = { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body };
+  if (noCors) opt.mode = 'no-cors';
+  return fetch(CFG.sheetURL, opt);
+}
+async function saveResult() {
+  const st = $('saveStat'), rb = $('retry');
+  st.className = 'stat wait'; st.textContent = 'Saving your result…'; rb.classList.add('hidden');
+  if (!CFG.sheetURL || CFG.sheetURL.includes('PASTE')) { fail('Sheet URL is not configured. Result is saved only in this browser.'); return; }
+  const body = JSON.stringify(lastPayload);
+  try {
+    const r = await post(body, false), j = await r.json();
+    if (j.ok) { okMsg(); return; }
+    fail('Server error: ' + (j.error || 'unknown'));
+  } catch (e) {
+    try { await post(body, true); okMsg(true); }   // duplicate-safe (id se), response read nahi ho paya
+    catch (e2) { fail('Internet/connection problem. Please try again.'); }
+  }
+  function okMsg(unsure) { st.className = 'stat ok'; st.textContent = '✓ Result saved successfully' + (unsure ? ' (sent)' : '') + '. Please download your report below.'; }
+  function fail(t) { st.className = 'stat bad'; st.textContent = '⚠ ' + t; rb.classList.remove('hidden'); }
+}
+
+// ===================== Personal PDF report (built on the student's own device; never uploaded) =====================
+function buildReport(STAT, T, tot, C, W, U) {
+  const endT = Date.now(), p2 = n => String(n).padStart(2, '0');
+  const fmtD = t => { const d = new Date(t); return p2(d.getDate()) + '/' + p2(d.getMonth() + 1) + '/' + d.getFullYear(); };
+  const fmtT = t => { const d = new Date(t); let hh = d.getHours(); const ap = hh >= 12 ? 'PM' : 'AM'; hh = hh % 12 || 12; return p2(hh) + ':' + p2(d.getMinutes()) + ':' + p2(d.getSeconds()) + ' ' + ap; };
+  const fmtDur = ms => { const s = Math.round(ms / 1000); return p2(s / 3600 | 0) + ' h ' + p2((s % 3600) / 60 | 0) + ' min ' + p2(s % 60) + ' s'; };
+  const max = Q.length * CFG.plus, att = C + W, acc = att ? Math.round(C * 100 / att) : 0;
+  const pc = (a, b) => b ? Math.round(a * 100 / b) : 0;
+  const lvl = p => p >= 70 ? ['Strong', '#16a34a'] : p >= 40 ? ['Improving', '#d97706'] : ['Focus area', '#0891b2'];
+  const subjQ = {}, topic = {};
+  for (const k in SUB) subjQ[k] = Q.filter(q => q.s === k).length;
+  Q.forEach((q, i) => {
+    const n = TOPIC_NAMES[TOPIC[Q[i].id]] || 'General', t = topic[n] = topic[n] || { s: q.s, tot: 0, c: 0, w: 0, u: 0 };
+    t.tot++; t[STAT[i]]++;
+  });
+  const ks = Object.keys(SUB).sort((a, b) => T[b].m - T[a].m);
+  const best = ks[0], low = ks[ks.length - 1];
+  const R = 38, CI = 2 * Math.PI * R, ring = CI * Math.max(0, tot) / max;
+
+  const subjCards = Object.keys(SUB).map(k => {
+    const t = T[k], n = subjQ[k], p = pc(t.c, n), L = lvl(p);
+    const tag = k === best && t.m > 0 ? '⭐ Your strongest subject' : k === low && ks.length > 1 ? '🎯 Biggest room to grow' : '';
+    return '<div class="sc"><div class="sh"><b>' + SUB[k] + '</b><span style="background:' + L[1] + '">' + L[0] + '</span></div>' +
+      '<div class="sm">' + t.m + ' <small>marks</small></div>' +
+      '<div class="bar"><i style="width:' + pc(t.c, n) + '%;background:#16a34a"></i><i style="width:' + pc(t.w, n) + '%;background:#f59e0b"></i><i style="width:' + pc(t.u, n) + '%;background:#94a3b8"></i></div>' +
+      '<div class="lg2"><span><b style="color:#16a34a">' + t.c + '</b> correct</span><span><b style="color:#d97706">' + t.w + '</b> wrong</span><span><b style="color:#64748b">' + t.u + '</b> skipped</span></div>' +
+      '<div class="tg">' + tag + '&nbsp;</div></div>';
+  }).join('');
+
+  const tops = Object.entries(topic).map(([n, t]) => ({ ...t, name: n, p: pc(t.c, t.tot) }));
+  const topRows = Object.keys(SUB).map(k => '<div class="th">' + SUB[k] + '</div>' + tops.filter(t => t.s === k).sort((a, b) => b.p - a.p).map(t => {
+    const L = lvl(t.p);
+    return '<div class="tr"><span class="tn">' + t.name + '</span><span class="tb"><i style="width:' + Math.max(t.p, 3) + '%;background:' + L[1] + '"></i></span><span class="tp">' + t.c + '/' + t.tot + '</span></div>';
+  }).join('')).join('');
+
+  const kind = i => Q[i].t === 'n' ? 'n' : /Statement|Assertion/.test(Q[i].q) ? 's' : 'm';
+  const KN = { n: 'Numerical questions', s: 'Statement / Assertion–Reason questions', m: 'Concept-based MCQs' };
+  const KT = {
+    n: 'Write each step on paper and re-check units and the final arithmetic before entering the number.',
+    s: 'Judge each statement separately as true/false first, then choose the matching option — avoid deciding from just one statement.',
+    m: 'Revise the theory and standard results of the topics on the left, then practise 10 MCQs per topic.'
+  };
+  const pat = ['n', 's', 'm'].map(x => {
+    const idx = Q.map((_, i) => i).filter(i => kind(i) === x), w = idx.filter(i => STAT[i] === 'w').length, u = idx.filter(i => STAT[i] === 'u').length, c = idx.filter(i => STAT[i] === 'c').length;
+    if (!idx.length || w + u === 0) return '';
+    return '<div class="pt"><b>' + KN[x] + '</b> — ' + c + ' correct, ' + w + ' wrong, ' + u + ' skipped<br><span>' + KT[x] + '</span></div>';
+  }).join('') || '<div class="pt"><b>Excellent!</b> No mistakes to analyse.</div>';
+
+  const need = tops.filter(t => t.p < 70).sort((a, b) => a.p - b.p || b.tot - a.tot).slice(0, 3);
+  const strong = tops.filter(t => t.p >= 70).sort((a, b) => b.p - a.p).slice(0, 3);
+  const skipNote = U ? '<div class="pt"><b>' + U + ' skipped</b> — a skipped question is an opportunity, not a failure. Revisit them first (solutions are in this report) and practise answering within a time limit.</div>' : '';
+  const plan = (need.length ? '<ol>' + need.map(t => '<li><b>' + t.name + '</b> (' + SUB[t.s] + ') — ' + t.c + ' of ' + t.tot + ' correct. Re-read the concept notes, then solve the questions marked with this topic in the pages that follow.</li>').join('') + '</ol>' : '<p>You are strong in every topic — keep practising mixed full-length tests to stay sharp.</p>') +
+    (strong.length ? '<p class="ok">💪 Keep it up in: ' + strong.map(t => t.name).join(', ') + '.</p>' : '');
+
+  const first = '<div class="pg1">' +
+    '<div class="hd"><div><div class="ex">' + esc(CFG.examName) + ' • Personal Performance Report</div><h1>' + esc(ST.name) + '</h1><div class="sub">' + esc(ST.school) + ', ' + esc(ST.city) + ', ' + esc(ST.state) + '</div>' +
+    '<div class="sub" style="margin-top:6px"><b>Date:</b> ' + fmtD(startAt) + ' &nbsp;•&nbsp; <b>Start:</b> ' + fmtT(startAt) + ' &nbsp;•&nbsp; <b>End:</b> ' + fmtT(endT) + ' &nbsp;•&nbsp; <b>Time taken:</b> ' + fmtDur(endT - startAt) + '</div></div>' +
+    '<svg width="110" height="110" viewBox="0 0 100 100"><circle cx="50" cy="50" r="' + R + '" fill="none" stroke="#ffffff33" stroke-width="10"/><circle cx="50" cy="50" r="' + R + '" fill="none" stroke="#67e8f9" stroke-width="10" stroke-linecap="round" stroke-dasharray="' + ring + ' ' + CI + '" transform="rotate(-90 50 50)"/><text x="50" y="49" text-anchor="middle" font-size="19" font-weight="800" fill="#fff">' + tot + '</text><text x="50" y="64" text-anchor="middle" font-size="10" fill="#cfe9f5">out of ' + max + '</text></svg></div>' +
+    '<div class="tiles"><div><b style="color:#16a34a">' + C + '</b>Correct</div><div><b style="color:#d97706">' + W + '</b>Wrong</div><div><b style="color:#64748b">' + U + '</b>Skipped</div><div><b style="color:#0891b2">' + acc + '%</b>Accuracy on attempted</div></div>' +
+    '<h2>Subject-wise snapshot</h2><div class="subs">' + subjCards + '</div>' +
+    '<div class="two"><div><h2>Topic strength <small>(correct / total)</small></h2>' + topRows + '</div>' +
+    '<div><h2>Where mistakes are happening</h2>' + pat + skipNote + '<h2>Your next steps</h2><div class="plan">' + plan + '</div></div></div>' +
+    '<div class="ft">This report was generated on your device for you only. It is not shared publicly. Every mistake shown here is simply a topic you now know how to improve — you can do it! 🚀</div></div>';
+
+  const miss = Q.map((_, i) => i).filter(i => STAT[i] !== 'c');
+  let body = '';
+  for (const k in SUB) {
+    const list = miss.filter(i => Q[i].s === k);
+    if (!list.length) continue;
+    body += '<h2 class="sj">' + SUB[k] + ' — ' + list.length + ' question' + (list.length > 1 ? 's' : '') + ' to review</h2>';
+    body += list.map(i => {
+      const q = Q[i], skipped = STAT[i] === 'u';
+      const given = skipped ? 'Not attempted' : q.t === 'm' ? 'ABCD'[ans[i]] + '. ' + q.o[ans[i]] : String(ans[i]);
+      const corr = q.t === 'm' ? 'ABCD'[q.a] + '. ' + q.o[q.a] : String(q.a);
+      const opts = q.t === 'm' ? '<div class="op">' + q.o.map((o, j) => '<div' + (j === q.a ? ' class="co"' : '') + '><b>' + 'ABCD'[j] + '</b> ' + o + '</div>').join('') + '</div>' : '';
+      const steps = (SOL[Q[i].id] || 'Refer to your teacher for this solution.').split(' | ').map(s => '<li>' + s + '</li>').join('');
+      return '<div class="sol"><div class="sq"><b>Q' + (i + 1) + '</b> <span class="chip">' + (TOPIC_NAMES[TOPIC[Q[i].id]] || '') + '</span> <span class="chip ' + (skipped ? 'sk' : 'wr') + '">' + (skipped ? 'Skipped' : 'Incorrect') + '</span></div>' +
+        '<div class="qt">' + q.q + q.f + '</div>' + opts +
+        '<div class="ans">Your answer: <b>' + esc(given).replace(/&lt;(\/?)(sub|sup)&gt;/g, '<$1$2>') + '</b> &nbsp;|&nbsp; Correct answer: <b class="g">' + corr + '</b></div>' +
+        '<div class="st"><b>Solution</b><ol>' + steps + '</ol></div></div>';
+    }).join('');
+  }
+  if (!miss.length) body = '<h2 class="sj">Perfect score!</h2><p>You answered every question correctly — there is nothing to review. Outstanding work!</p>';
+
+  const css = '<style>#rep{font-family:system-ui,Segoe UI,Roboto,sans-serif;color:#0b2545;font-size:11.5px;line-height:1.45;background:#fff}#rep *{box-sizing:border-box}' +
+    '#rep h1{margin:2px 0;font-size:24px;color:#fff}#rep h2{font-size:13px;margin:12px 0 6px;color:#0b2545;border-left:4px solid #06b6d4;padding-left:7px}#rep h2 small{font-weight:400;color:#64748b}' +
+    '#rep .hd{background:linear-gradient(135deg,#0b2545,#0e7490);color:#fff;border-radius:12px;padding:14px 18px;display:flex;justify-content:space-between;align-items:center}#rep .ex{font-size:10.5px;color:#a5e7f3;letter-spacing:.4px}#rep .sub{color:#cfe9f5;font-size:11.5px}' +
+    '#rep .tiles{display:flex;gap:8px;margin-top:10px}#rep .tiles div{flex:1;background:#f1f9fc;border-radius:10px;padding:8px;text-align:center;font-size:10px;color:#5a7291}#rep .tiles b{display:block;font-size:20px}' +
+    '#rep .subs{display:flex;gap:8px}#rep .sc{flex:1;border:1px solid #d6e8f0;border-radius:10px;padding:9px}#rep .sh{display:flex;justify-content:space-between;align-items:center}#rep .sh span{color:#fff;font-size:9.5px;padding:2px 8px;border-radius:10px}' +
+    '#rep .sm{font-size:22px;font-weight:800;color:#0e7490}#rep .sm small{font-size:10px;font-weight:400;color:#64748b}#rep .bar{display:flex;height:9px;border-radius:5px;overflow:hidden;background:#e2eef5;margin:5px 0}#rep .bar i{display:block;height:100%}' +
+    '#rep .lg2{display:flex;justify-content:space-between;font-size:10px;color:#475569}#rep .tg{font-size:10px;color:#0e7490;font-weight:600;margin-top:4px;min-height:14px}' +
+    '#rep .two{display:flex;gap:14px}#rep .two>div{flex:1}#rep .th{font-size:10px;font-weight:700;color:#0e7490;margin:7px 0 2px;text-transform:uppercase;letter-spacing:.4px}' +
+    '#rep .tr{display:flex;align-items:center;gap:6px;margin:2px 0}#rep .tn{width:46%;font-size:10.5px}#rep .tb{flex:1;height:8px;background:#e2eef5;border-radius:4px;overflow:hidden}#rep .tb i{display:block;height:100%}#rep .tp{width:30px;text-align:right;font-size:10px;color:#475569}' +
+    '#rep .pt{background:#f1f9fc;border-radius:8px;padding:6px 9px;margin-bottom:5px;font-size:10.5px}#rep .pt span{color:#475569}#rep .plan ol{margin:0;padding-left:16px;font-size:10.5px}#rep .plan li{margin-bottom:3px}#rep .plan p{margin:4px 0;font-size:10.5px}#rep .ok{color:#15803d;font-weight:600}' +
+    '#rep .ft{margin-top:12px;text-align:center;font-size:10px;color:#64748b;border-top:1px solid #e2eef5;padding-top:7px}' +
+    '#rep .sj{font-size:15px;margin:6px 0 8px;background:#e0f7fb;padding:7px 10px;border-left:5px solid #06b6d4}' +
+    '#rep .sol{border:1px solid #d6e8f0;border-radius:10px;padding:10px 12px;margin-bottom:10px;page-break-inside:avoid}#rep .sq{margin-bottom:4px}#rep .chip{font-size:9.5px;background:#e2eef5;border-radius:8px;padding:1px 7px;margin-left:4px}#rep .chip.sk{background:#e2e8f0;color:#475569}#rep .chip.wr{background:#fef3c7;color:#92400e}' +
+    '#rep .qt{font-size:12px;margin:4px 0}#rep .fig{margin:6px 0;color:#0b2545}#rep .op{display:grid;grid-template-columns:1fr 1fr;gap:3px 10px;font-size:11px;margin:4px 0}#rep .op .co{color:#15803d;font-weight:700}' +
+    '#rep .ans{font-size:11px;margin:5px 0;color:#475569}#rep .g{color:#15803d}#rep .st{background:#f0fdf4;border-radius:8px;padding:6px 10px;font-size:11px}#rep .st ol{margin:3px 0 0;padding-left:18px}#rep .st li{margin-bottom:2px}</style>';
+
+  return css + first + '<div class="html2pdf__page-break"></div>' + '<h2 style="font-size:17px;margin:0 0 4px">Your Questions to Review — with Step-by-Step Solutions</h2><div style="font-size:10.5px;color:#64748b;margin-bottom:8px">Only the questions you got wrong or skipped are included. Work through them one by one — each one you master is marks gained in the next test.</div>' + body;
+}
+
+function makePDF() {
+  const st = $('pdfStat'), pb = $('prtBtn');
+  const set = (cls, t) => { st.className = 'stat ' + cls; st.textContent = t; };
+  if (typeof html2pdf === 'undefined') { set('bad', 'The PDF engine could not load (internet needed). Use the Print / Save as PDF button below.'); pb.classList.remove('hidden'); return; }
+  set('wait', 'Preparing your personal PDF report…');
+  const nm = ST.name.replace(/[^A-Za-z0-9]+/g, '_').replace(/^_|_$/g, '') || 'Student';
+  html2pdf().set({
+    margin: [8, 8, 10, 8], filename: 'CBSE10_Science_Report_' + nm + '.pdf',
+    image: { type: 'jpeg', quality: 0.92 }, html2canvas: { scale: matchMedia('(pointer:coarse)').matches ? 1.25 : 1.6, useCORS: true, backgroundColor: '#ffffff' },
+    jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }, pagebreak: { mode: ['css', 'legacy'], avoid: ['.sol'] }
+  }).from($('rep')).save()
+    .then(() => set('ok', '✓ Your personal report has been downloaded (private to you).'))
+    .catch(() => { set('bad', 'Could not create the PDF automatically. Use the Print / Save as PDF button below.'); pb.classList.remove('hidden'); });
+}
+
+// ===================== Basic protection =====================
+addEventListener('beforeunload', e => { if (run) { e.preventDefault(); e.returnValue = ''; } });
+['contextmenu', 'copy', 'cut', 'paste'].forEach(e => document.addEventListener(e, ev => { if (run) ev.preventDefault(); }));
+</script>
+
+<!-- ===== SOLUTIONS & TOPICS (used only for the student's personal PDF report) ===== -->
+<script>
+const TOPIC_NAMES = {"e": "Electricity", "m": "Magnetic Effects of Current", "l": "Light: Reflection & Refraction", "h": "Human Eye & Colourful World", "r": "Chemical Reactions & Equations", "a": "Acids, Bases & Salts", "n": "Metals & Non-metals", "k": "Carbon & its Compounds", "L": "Life Processes", "C": "Control & Coordination", "R": "How Organisms Reproduce", "H": "Heredity & Evolution", "E": "Our Environment"};
+const TOPIC = "eeeeeeeeemmmmmmmmlllllllllhhhhhhhrrrrrrrraaaaaaaaannnnnnnnkkkkkkkkLLLLLLLLLLCCCCCCCRRRRRRRHHHHHHEEEE".split('');
+const SOL = [
+"Potential difference = work done per unit charge, so 1 V = 1 J/C.",
+"R = ρl/A. New R = ρ(2l)/(A/2) = 4R.",
+"1/R = 1/6 + 1/6 + 1/6 = 3/6, so R = 2 Ω.",
+"Joule's law of heating: H = I²Rt.",
+"E = P × t = 1 kW × 2 h = 2 kWh.",
+"V = IR = 2 × 5 = 10 V.",
+"An ammeter has very low resistance and measures current, so it must be in series.",
+"Resistivity is a property of the material (and temperature), not of the size of the wire.",
+"Tungsten can glow at very high temperature without melting, so R explains A.",
+"Right-hand thumb rule: thumb along current, curled fingers show field direction.",
+"By convention field lines emerge from the north pole and enter the south pole outside the magnet.",
+"A motor uses the force on a current-carrying coil in a magnetic field to produce rotation.",
+"A generator works on electromagnetic induction.",
+"Thumb = force, forefinger = field, middle finger = current.",
+"AC in India changes direction 50 times per second (50 Hz).",
+"Faraday's discovery: a changing magnetic flux induces an emf/current in a coil.",
+"If lines crossed, there would be two directions at the crossing point, which is impossible.",
+"A plane mirror has infinite radius of curvature, hence infinite focal length.",
+"Rays become parallel after reflection, so the image forms at infinity.",
+"Standard mirror formula: 1/v + 1/u = 1/f.",
+"P = 1/f(in m) = 1/0.2 = +5 D.",
+"v = c/n = 3×10⁸/1.5 = 2×10⁸ m/s.",
+"By definition, such rays converge at the principal focus.",
+"A convex mirror gives an erect, diminished image and a wide field of view.",
+"At 2F the image is at 2F, real, inverted and equal in size.",
+"Dentists place the mirror close to the tooth, so a magnified erect image is seen.",
+"A normal eye can see very distant objects clearly.",
+"A concave lens diverges rays so the image falls on the retina.",
+"The near point of a normal eye is about 25 cm.",
+"Short blue wavelengths are scattered most by air molecules (Rayleigh scattering).",
+"Different colours bend by different amounts, so white light disperses.",
+"Changing refractive index of air makes the apparent position and brightness flicker.",
+"The iris is a muscular diaphragm that adjusts pupil size.",
+"More reactive iron displaces copper from its salt solution.",
+"Balanced equation: 2H₂ + O₂ → 2H₂O.",
+"Antioxidants (and airtight packing, nitrogen flushing) slow oxidation.",
+"2Pb(NO₃)₂ → 2PbO + 4NO₂ + O₂; NO₂ is brown.",
+"CaCO₃ → CaO + CO₂ needs heat to proceed.",
+"CaO + H₂O → Ca(OH)₂ + heat.",
+"2AgCl → 2Ag + Cl₂ in sunlight (photolytic decomposition).",
+"Iron loses electrons to form Fe³⁺ compounds, so R correctly explains A.",
+"Neutral solutions (pure water) have pH 7.",
+"Baking soda is sodium hydrogencarbonate.",
+"Vinegar is a dilute solution of acetic (ethanoic) acid.",
+"Gypsum (2H₂O) on heating at 373 K gives CaSO₄·½H₂O.",
+"Ca(OH)₂ + Cl₂ → CaOCl₂ + H₂O.",
+"Recrystallised sodium carbonate has 10 molecules of water of crystallisation.",
+"Bases turn red litmus blue and have pH above 7.",
+"Metal carbonate + acid → salt + water + carbon dioxide.",
+"Acidic behaviour needs H⁺(aq) ions, which form only when water is present.",
+"Mercury is the only common metal that is liquid at room temperature.",
+"Reactivity series: Mg > Zn > Fe > Cu.",
+"Aqua regia (3 parts HCl : 1 part HNO₃) can dissolve gold and platinum.",
+"Strong attraction between oppositely charged ions needs a lot of energy to break.",
+"Zinc coating is galvanisation; zinc corrodes preferentially.",
+"Iodine is a lustrous non-metal.",
+"Rust (Fe₂O₃·xH₂O) forms in the presence of oxygen and moisture.",
+"Kerosene keeps sodium away from oxygen and moisture, so R explains A.",
+"Alcohols contain the hydroxyl (−OH) group.",
+"1 C−C bond + 6 C−H bonds = 7.",
+"Homologues differ by one −CH₂− unit: C₂H₅OH → C₃H₇OH.",
+"Esterification gives ethyl ethanoate (ester) and water.",
+"Alkaline hydrolysis of an ester (fat) gives soap and glycerol.",
+"Alkenes have one double bond: CₙH₂ₙ.",
+"Soap + Ca²⁺/Mg²⁺ salts form an insoluble precipitate called scum.",
+"Allotropes are different structural forms of the same element.",
+"Salivary amylase converts starch into sugar.",
+"Chloroplasts contain chlorophyll that traps sunlight.",
+"Guard cells swell or shrink to open or close the stomatal pore.",
+"Thin-walled alveoli provide a large surface for gas exchange.",
+"Two atria and two ventricles.",
+"Xylem carries water and minerals from roots to other parts.",
+"Fermentation: glucose → ethanol + CO₂ + energy.",
+"Arteries carry blood away from the heart.",
+"Each kidney has about a million nephrons that filter blood.",
+"Valves keep blood flowing in one direction towards the heart.",
+"Insulin lowers blood glucose level.",
+"Auxin is synthesised at shoot tips and helps cells grow longer.",
+"At the synapse an impulse passes by chemical signals.",
+"Thyroxine contains iodine; its deficiency causes goitre.",
+"The cerebellum coordinates voluntary movements, posture and balance.",
+"Photo = light; shoots are positively phototropic.",
+"The shorter pathway saves time, so R explains A.",
+"Amoeba divides into two daughter cells by binary fission.",
+"The anther is the male part where pollen forms.",
+"Sperm meets the egg in the oviduct.",
+"Buds on leaf margins grow into new plants.",
+"A barrier method (condom) prevents contact with infected fluids.",
+"Gametes are haploid: 23 chromosomes.",
+"New individual grows as a bud from one parent body.",
+"Mendel is called the Father of Genetics.",
+"Tall : dwarf = 3 : 1 in the F₂ generation.",
+"Mother always gives X; the father gives X (girl) or Y (boy).",
+"Same basic structure, similar origin — homologous.",
+"Genes are segments of DNA present on chromosomes.",
+"Individuals with useful variations survive and reproduce.",
+"Only about 10% of energy is transferred; the rest is lost.",
+"Chlorofluorocarbons release chlorine that breaks down ozone.",
+"Paper is broken down by microorganisms.",
+"Green plants make food by photosynthesis."
+];
+</script>
+
+</body>
+</html>
